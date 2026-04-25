@@ -1,0 +1,12 @@
+name: hackblr
+metadata:
+  template: hackblr-bicep
+services:
+  backend:
+    project: ./backend
+    host: containerapp
+    language: js
+  frontend:
+    project: ./frontend
+    host: containerapp
+    language: js

@@ -1,0 +1,49 @@
+
+> frontend@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.3 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.4:3000
+- Environments: .env.local
+✓ Ready in 247ms
+
+ GET / 200 in 224ms (next.js: 121ms, application-code: 102ms)
+ GET / 200 in 46ms (next.js: 7ms, application-code: 39ms)
+[browser] Failed to start Vapi call: Error: Unhandled error. (undefined)
+  Reload env: .env.local
+ GET / 200 in 166ms (next.js: 75ms, application-code: 91ms)
+[browser] ⚠️  NEXT_PUBLIC_VAPI_PUBLIC_KEY is not set. Voice calls will not work. (lib/vapiClient.ts:9:15)
+[browser] Failed to start Vapi call: Error: Unhandled error. (undefined)
+    at async useVapiCall.useCallback[startCall] (hooks/useVapiCall.ts:25:7)
+  23 |       setCallActive(true);
+  24 |
+> 25 |       await vapi.start(assistantId, {
+     |       ^
+  26 |         metadata: { sessionId },
+  27 |       } as Parameters<typeof vapi.start>[1]);
+  28 | (hooks/useVapiCall.ts:50:15)
+ GET / 200 in 51ms (next.js: 12ms, application-code: 39ms)
+[browser] ⚠️  NEXT_PUBLIC_VAPI_PUBLIC_KEY is not set. Voice calls will not work. (lib/vapiClient.ts:9:15)
+ GET /docs 404 in 62ms (next.js: 34ms, application-code: 27ms)
+✓ Compiled in 469ms
+  Reload env: .env.local
+ GET /docs 404 in 94ms (next.js: 43ms, application-code: 50ms)
+ GET /docs 404 in 30ms (next.js: 1342µs, application-code: 28ms)
+ GET / 200 in 62ms (next.js: 25ms, application-code: 37ms)
+[browser] ⚠️  NEXT_PUBLIC_VAPI_PUBLIC_KEY is not set. Voice calls will not work. (lib/vapiClient.ts:9:19)
+[browser] Failed to start Vapi call: Error: Unhandled error. (undefined)
+ GET / 200 in 59ms (next.js: 15ms, application-code: 44ms)
+[browser] ⚠️  NEXT_PUBLIC_VAPI_PUBLIC_KEY is not set. Voice calls will not work. (lib/vapiClient.ts:9:19)
+[browser] Failed to start Vapi call: Error: Unhandled error. (undefined)
+ GET / 200 in 46ms (next.js: 6ms, application-code: 39ms)
+[browser] ⚠️  NEXT_PUBLIC_VAPI_PUBLIC_KEY is not set. Voice calls will not work. (lib/vapiClient.ts:9:15)
+ GET / 200 in 58ms (next.js: 12ms, application-code: 46ms)
+[browser] ⚠️  NEXT_PUBLIC_VAPI_PUBLIC_KEY is not set. Voice calls will not work. (lib/vapiClient.ts:9:15)
+  Reload env: .env.local
+✓ Compiled in 40ms
+ GET / 200 in 95ms (next.js: 46ms, application-code: 48ms)
+ GET / 200 in 95ms (next.js: 62ms, application-code: 33ms)
+ GET /docs 404 in 35ms (next.js: 23ms, application-code: 12ms)
+ GET /docs 404 in 48ms (next.js: 5ms, application-code: 43ms)
+[?25h
