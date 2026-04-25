@@ -5,11 +5,15 @@ import { User } from "../models/User.js";
 import rateLimit from "express-rate-limit";
 
 const router = Router();
-const JWT_SECRET = process.env.JWT_SECRET || "fallback_secret_for_dev_only";
 
-if (process.env.NODE_ENV === "production" && JWT_SECRET === "fallback_secret_for_dev_only") {
-  throw new Error("FATAL ERROR: JWT_SECRET is not defined in production.");
-}
+// Ensure we get the secret directly at runtime
+const getJwtSecret = () => {
+  const secret = process.env.JWT_SECRET;
+  if (process.env.NODE_ENV === "production" && (!secret || secret === "fallback_secret_for_dev_only")) {
+    throw new Error("FATAL ERROR: JWT_SECRET is not defined in production.");
+  }
+  return secret || "fallback_secret_for_dev_only";
+};
 
 // Rate limiting for authentication endpoints
 const authLimiter = rateLimit({
@@ -59,7 +63,7 @@ router.post("/signup", authLimiter, async (req: Request, res: Response) => {
 
     await user.save();
 
-    const token = jwt.sign({ id: user._id, role: user.role }, JWT_SECRET, { expiresIn: "24h" });
+    const token = jwt.sign({ id: user._id, role: user.role }, getJwtSecret(), { expiresIn: "24h" });
 
     res.status(201).json({ 
       token, 
@@ -89,7 +93,7 @@ router.post("/login", authLimiter, async (req: Request, res: Response) => {
       return;
     }
 
-    const token = jwt.sign({ id: user._id, role: user.role }, JWT_SECRET, { expiresIn: "24h" });
+    const token = jwt.sign({ id: user._id, role: user.role }, getJwtSecret(), { expiresIn: "24h" });
 
     res.json({ 
       token, 
