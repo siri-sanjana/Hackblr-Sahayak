@@ -162,28 +162,26 @@ Respond in the language the user is using.`;
   }
 });
 
-// ─── Start (Local Only) ───────────────────────────────────────────────────────
-if (process.env.NODE_ENV !== "production") {
-  async function start() {
-    try {
-      console.log("🔧 Initializing Qdrant collections (Required)...");
-      await initCollections();
-      console.log("✅ Qdrant connection established.");
-      
-      console.log("🍃 Connecting to MongoDB...");
-      const mongoUri = process.env.MONGO_URI || "mongodb://localhost:27017/sahayak";
-      await mongoose.connect(mongoUri);
-      console.log("✅ MongoDB connection established.");
-    } catch (err) {
-      console.error("❌ CRITICAL ERROR: Database connection failed.");
-      console.error(err);
-    }
-
-    app.listen(PORT, () => {
-      console.log(`🚀 Backend running at http://localhost:${PORT}`);
-    });
+// ─── Start ───────────────────────────────────────────────────────
+async function start() {
+  try {
+    console.log("🔧 Initializing Qdrant collections (Required)...");
+    await initCollections();
+    console.log("✅ Qdrant connection established.");
+    
+    console.log("🍃 Connecting to MongoDB...");
+    const mongoUri = process.env.MONGO_URI || "mongodb://localhost:27017/sahayak";
+    await mongoose.connect(mongoUri);
+    console.log("✅ MongoDB connection established.");
+  } catch (err) {
+    console.error("❌ CRITICAL ERROR: Database connection failed.");
+    console.error(err);
   }
-  start();
+
+  app.listen(PORT, () => {
+    console.log(`🚀 Backend running at http://localhost:${PORT} in ${process.env.NODE_ENV} mode`);
+  });
 }
+start();
 
 export default app;
